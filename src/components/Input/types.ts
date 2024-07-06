@@ -7,4 +7,5 @@ export type InputProps = {
     type: string;
     size?: Size;
     autoFocus?: boolean;
+    subLink?: React.ReactNode
 }

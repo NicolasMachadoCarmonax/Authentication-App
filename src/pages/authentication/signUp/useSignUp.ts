@@ -9,13 +9,8 @@ export const useSignUp = () => {
     async function onSignUp(event: FormData) {
         const email = event.get('email') as string
         const password = event.get('password') as string
-        const phone_number = event.get('phone') as string
         const signUpResponse = await signUp({
-            password, username: email, options: {
-                userAttributes: {
-                    phone_number
-                }
-            }
+            password, username: email
         })
         if(signUpResponse === "CONFIRM_SIGN_UP"){
             setAuthenticationEmail(email)

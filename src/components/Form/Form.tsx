@@ -1,8 +1,6 @@
 import React from 'react'
 import { useForm } from './useForm'
-import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
-import { signUpFormSubmitButton } from '../../constants/constants'
 import { type FormProps } from './types'
 
 const styles = {
@@ -17,7 +15,7 @@ const styles = {
 }
 
 export function Form(props: FormProps) {
-    const { onSubmit, inputs } = props
+    const { onSubmit, inputs, submitButtonText, buttonSubLink } = props
     const { handleSubmit } = useForm({
         onSubmit
     })
@@ -27,6 +25,7 @@ export function Form(props: FormProps) {
         {inputs.map((input: React.ReactNode )=>input)}
         <Button style={{
             ...styles.button
-        }} type="submit" text={signUpFormSubmitButton}/>
+        }} type="submit" text={submitButtonText}/>
+        {buttonSubLink}
     </form>
 }

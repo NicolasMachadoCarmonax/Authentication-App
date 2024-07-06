@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import { App } from './pages/app/App.tsx'
 import './index.css'
 import {
   createBrowserRouter,
@@ -11,11 +11,13 @@ import { SignUp } from './pages/authentication/signUp/signUp.tsx'
 import { SignIn } from './pages/authentication/signIn/signIn.tsx'
 import { ConfirmSignIn } from './pages/authentication/confirmSignIn/ConfirmSignIn.tsx';
 import { ConfirmSignUp } from './pages/authentication/confirmSignUp/confirmSignUp.tsx';
+import { SessionValidation } from './hocs/sessionValidation/SessionValidation.tsx';
 import { Amplify } from 'aws-amplify';
 import {
   RecoilRoot,
 } from 'recoil';
-import { routeApp, routeAuthentication, routeAuthenticationSignUp, routeAuthenticationSignIn, routeAuthenticationConfirmSignIn, routeAuthenticationConfirmSignUp } from './constants/constants.ts';
+import { routeApp, routeAuthentication, routeAuthenticationSignUp, routeAuthenticationSignIn, routeAuthenticationConfirmSignIn, routeAuthenticationConfirmSignUp, routeAuthenticationResetPassword } from './constants/constants.ts';
+import ResetPassword from './pages/authentication/resetPassword/resetPassword.tsx';
 Amplify.configure({
   Auth: {
     Cognito: {
@@ -50,7 +52,11 @@ const router = createBrowserRouter([
       {
         path: routeAuthenticationConfirmSignIn,
         element: <ConfirmSignIn/>
-      },    
+      },
+      {
+        path: routeAuthenticationResetPassword,
+        element: <ResetPassword/>
+      }
     ],
   },
 ]);
@@ -58,7 +64,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RecoilRoot>
-      <RouterProvider router={router}/>
+        <RouterProvider router={router}/>
     </RecoilRoot>
   </React.StrictMode>,
 )

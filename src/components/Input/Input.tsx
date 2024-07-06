@@ -2,6 +2,10 @@ import React from 'react'
 import { InputProps } from './types'
 import { Input as InputAssets } from '../../assets/assets'
 const styles = {
+    wrapper: {
+        display: "flex",
+        flexDirection: "column" as "column"
+    },
     container: {
         height: '2.3rem',
         display: 'flex',
@@ -33,8 +37,11 @@ const styles = {
 }
 
 export function Input(props: InputProps){
-    const { placeholder, icon, size, name, ...rest } = props
+    const { placeholder, icon, size, name, subLink, ...rest } = props
     return <div style={{
+        ...styles.wrapper
+    }}>
+    <div style={{
             ...styles.container,
             width: size === 'lg' ? '400px' : size === 'md' ? '200px' : size === 'sm' ? '100px' : '100%',
         }}>
@@ -46,5 +53,7 @@ export function Input(props: InputProps){
             }} src={InputAssets[icon]}/>
         </div>
         <input name={name} placeholder={placeholder} style={{...styles.input}} {...rest}></input>
+    </div>
+    {subLink}
     </div>
 }
